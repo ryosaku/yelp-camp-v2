@@ -3,7 +3,7 @@ var express    = require("express"),
     bodyParser = require("body-parser"),
     mongoose   = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1");
+mongoose.connect("mongodb://127.0.0.1/yelp-camp-v2");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
