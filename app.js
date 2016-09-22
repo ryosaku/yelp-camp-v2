@@ -3,9 +3,30 @@ var express    = require("express"),
     bodyParser = require("body-parser"),
     mongoose   = require("mongoose");
 
-mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect("mongodb://127.0.0.1");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+
+//schema setup
+var campgroundsSchema = new mongoose.Schema({
+    name: String,
+    image: String
+});
+
+var Campground = mongoose.model("Campground", campgroundsSchema);
+
+Campground.create(
+    {
+        name: "Camp1",
+        image: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTqg5PsPF91O_Cc_NQWI_r7j7a80eQYHgXOXH9JG8vsSwv5gGY6"
+    }, function(err, campground){
+        if(err){
+            console.log(err);
+        } else {
+            console.log("new campgrounds");
+            console.log(campground);
+        }
+});
 
 var campgrounds = [
         {name: "Camp1", image: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTqg5PsPF91O_Cc_NQWI_r7j7a80eQYHgXOXH9JG8vsSwv5gGY6"},
